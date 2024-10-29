@@ -64,16 +64,16 @@ sudo docker exec -it domserver cat /opt/domjudge/domserver/etc/restapi.secret
 # Format: '<ID> <API url> <user> <password>'
 # default	http://localhost//api	judgehost 7UGT1gp1LsGzRixMQEUmFEKg01POxCWv
 ```
-docker-compose.yml 55번줄 JUDGEDAEMON_PASSWORD에 채점서버 비밀번호 입력
+docker-compose-checker 20번줄 JUDGEDAEMON_PASSWORD에 채점서버 비밀번호 입력
 
 ```
-sudo vi docker-compose.yml
+sudo vi docker-compose-checker
     - JUDGEDAEMON_PASSWORD=7UGT1gp1LsGzRixMQEUmFEKg01POxCWv
 ```
 
 채점서버 실행
 ```bash
-sudo docker-compose -f docker-compose.yml up -d judgehost-0
+sudo docker-compose -f docker-compose-checker.yml up -d
 ```
 
 # 웹사이트 관리자 로그인
@@ -95,4 +95,3 @@ sudo docker exec -it domserver cat /opt/domjudge/domserver/etc/initial_admin_pas
 ```
 아이디 : ADMIN
 비밀번호 : ZTw4t_-OSK4ArGnp
-

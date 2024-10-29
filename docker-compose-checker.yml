@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:  
+  judgehost-0:
+    container_name: judgehost-0
+    image: domjudge/judgehost:latest
+    privileged: true
+    hostname: judgedaemon-0
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup
+    networks:
+      - domjudge
+    # depends_on:
+    #   - domserver
+    # cherker파일을 메인도커파일에 함꼐 사용할때만 사용
+    environment:
+      - CONTAINER_TIMEZONE=Asia/Seoul
+      - JUDGEDAEMON_USERNAME=judgehost
+      - DAEMON_ID=0
+      - JUDGEDAEMON_PASSWORD={restapi_password}
+
+networks:
+  domjudge:
+    name: domjudge
+    external: true
