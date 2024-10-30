@@ -1,5 +1,5 @@
 # Domjudge 8.3 구축
-<img src="https://github.com/user-attachments/assets/5d719eac-a754-4caf-824f-4d395670404a" width="50%">
+<img src="https://github.com/user-attachments/assets/5d719eac-a754-4caf-824f-4d395670404a" width="75%">
 
 Docker File 구성
 docker-compose.yml
