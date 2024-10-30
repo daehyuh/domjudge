@@ -64,11 +64,11 @@ sudo docker exec -it domserver cat /opt/domjudge/domserver/etc/restapi.secret
 # Format: '<ID> <API url> <user> <password>'
 # default	http://localhost//api	judgehost 7UGT1gp1LsGzRixMQEUmFEKg01POxCWv
 ```
-docker-compose-checker 20번줄 JUDGEDAEMON_PASSWORD에 채점서버 비밀번호 입력
+.env 파일에 채점서버 비밀번호 입력
 
 ```
-sudo vi docker-compose-checker
-    - JUDGEDAEMON_PASSWORD=7UGT1gp1LsGzRixMQEUmFEKg01POxCWv
+sudo vi .env
+restapi_password=7UGT1gp1LsGzRixMQEUmFEKg01POxCWv
 ```
 
 채점서버 실행
@@ -78,7 +78,7 @@ sudo docker-compose -f docker-compose-checker.yml up -d
 
 # 웹사이트 관리자 로그인
 
-웹 접속을 위한 방화벽 개방
+웹 접속을 위한 방화벽 개방 (서버마다 다를 수 있음)
 ```bash
 sudo iptables -I INPUT 1 -p tcp --dport 80 -j ACCEPT
 sudo iptables -I INPUT 1 -p tcp --dport 12345 -j ACCEPT

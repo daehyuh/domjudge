@@ -17,7 +17,7 @@ services:
       - CONTAINER_TIMEZONE=Asia/Seoul
       - JUDGEDAEMON_USERNAME=judgehost
       - DAEMON_ID=0
-      - JUDGEDAEMON_PASSWORD={restapi_password}
+      - JUDGEDAEMON_PASSWORD="${restapi_password}"
 
 networks:
   domjudge:
