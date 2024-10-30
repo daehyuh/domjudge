@@ -1,4 +1,5 @@
 # Domjudge 8.3 구축
+<img src="https://github.com/user-attachments/assets/5d719eac-a754-4caf-824f-4d395670404a" width="50%">
 
 Docker File 구성
 docker-compose.yml
@@ -78,7 +79,7 @@ sudo docker-compose -f docker-compose-checker.yml up -d
 
 # 웹사이트 관리자 로그인
 
-웹 접속을 위한 방화벽 개방 (서버마다 다를 수 있음)
+웹 접속을 위한 방화벽 개방 (환경마다 다를 수 있음)
 ```bash
 sudo iptables -I INPUT 1 -p tcp --dport 80 -j ACCEPT
 sudo iptables -I INPUT 1 -p tcp --dport 12345 -j ACCEPT
