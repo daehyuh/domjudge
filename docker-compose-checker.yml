@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:  
   judgehost-0:
     container_name: judgehost-0
@@ -17,7 +15,8 @@ services:
       - CONTAINER_TIMEZONE=Asia/Seoul
       - JUDGEDAEMON_USERNAME=judgehost
       - DAEMON_ID=0
-      - JUDGEDAEMON_PASSWORD="${restapi_password}"
+      # 패스워드 docker exec -it domserver cat /opt/domjudge/domserver/etc/restapi.secret 의 결과를 넣는다
+      - JUDGEDAEMON_PASSWORD=R0NRnbtLP+s9blVHBmMgjgQo+01uUGUW
 
 networks:
   domjudge:
