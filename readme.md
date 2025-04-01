@@ -68,6 +68,9 @@ cd domjudge
 ``` bash
 date
 sudo timedatectl set-timezone Asia/Seoul
+
+# python3-setuptools
+sudo apt install python3-setuptools
 ```
 
 MariaDB, Domserver 설치
@@ -105,8 +108,7 @@ docker-compose -f docker-compose-checker.yml up -d
 
 웹 접속을 위한 방화벽 개방 (환경마다 다를 수 있음)
 ```bash
-sudo iptables -I INPUT 1 -p tcp --dport 80 -j ACCEPT
-sudo iptables -I INPUT 1 -p tcp --dport 12345 -j ACCEPT
+sudo ufw allow 12345
 ```
 
 DomJudge 접속
