@@ -1,9 +1,5 @@
-version: '3.9'
+#version: '3.8'
 
-networks:
-  domjudge:
-    name: domjudge
-    
 services:
   mariadb:
     container_name: dj_mariadb
@@ -17,8 +13,11 @@ services:
       - MYSQL_USER=domjudge
       - MYSQL_PASSWORD=djpw
       - MYSQL_DATABASE=domjudge
-    command: --max-connections=1000
-    
+    command: >
+      --max-connections=1000
+      --innodb-log-file-size=488M
+      --max-allowed-packet=100M
+
   domserver:
     container_name: domserver
     image: domjudge/domserver:latest
@@ -37,3 +36,8 @@ services:
       - MYSQL_USER=domjudge
       - MYSQL_PASSWORD=djpw
       - MYSQL_DATABASE=domjudge
+
+networks:
+  domjudge:
+    name: domjudge
+

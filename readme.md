@@ -13,7 +13,7 @@ docker-compose-checker.yml
 
 ## Useage
 
-### Docker 설치
+### 우분투 환경에서의 Docker 설치
 
 Set up Docker's apt repository.
 ``` bash
@@ -38,8 +38,25 @@ Install the Docker packages.
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
+```bash
+curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose --version
+```
 
-### Domjudge 설치
+```bash
+sudo systemctl start docker
+```
+
+### 윈도우 환경에서는 Docker를 실행해줘야하
+docker desktop 실행
+
+```bash
+docker info
+```
+
+
+### Domjudge 및 Mariadb 설치
 
 Docker File 설치
 ```bash
@@ -50,7 +67,10 @@ cd domjudge
 서버 한국시간 기준 변경
 ``` bash
 date
-sudo timedatectl set-timezone Asia/Seoul 
+sudo timedatectl set-timezone Asia/Seoul
+
+# python3-setuptools
+sudo apt install python3-setuptools
 ```
 
 MariaDB, Domserver 설치
@@ -58,31 +78,37 @@ MariaDB, Domserver 설치
 sudo docker-compose up -d mariadb domserver
 ```
 
+
+한국시간대인지 확인해보기
+``` bash
+docker exec -it domserver bash
+date
+```
+
+
 DomServer 설치 시 채점서버 비밀번호 확인가능
 ``` bash
-sudo docker exec -it domserver cat /opt/domjudge/domserver/etc/restapi.secret
+docker exec -it domserver cat /opt/domjudge/domserver/etc/restapi.secret
 
 # Format: '<ID> <API url> <user> <password>'
-# default	http://localhost//api	judgehost 7UGT1gp1LsGzRixMQEUmFEKg01POxCWv
+# default	http://localhost//api	judgehost <비밀번호>
 ```
-.env 파일에 채점서버 비밀번호 입력
 
+docker-compose-checker(채점서버)에 비밀번호를 넣는다
 ```
-sudo vi .env
-restapi_password=7UGT1gp1LsGzRixMQEUmFEKg01POxCWv
+- JUDGEDAEMON_PASSWORD= <비밀번호>
 ```
 
 채점서버 실행
 ```bash
-sudo docker-compose -f docker-compose-checker.yml up -d
+docker-compose -f docker-compose-checker.yml up -d
 ```
 
 # 웹사이트 관리자 로그인
 
 웹 접속을 위한 방화벽 개방 (환경마다 다를 수 있음)
 ```bash
-sudo iptables -I INPUT 1 -p tcp --dport 80 -j ACCEPT
-sudo iptables -I INPUT 1 -p tcp --dport 12345 -j ACCEPT
+sudo ufw allow 12345
 ```
 
 DomJudge 접속
@@ -90,9 +116,9 @@ DomJudge 접속
 
 관리자 비밀번호 확인
 ```
-sudo docker exec -it domserver cat /opt/domjudge/domserver/etc/initial_admin_password.secret
+docker exec -it domserver cat /opt/domjudge/domserver/etc/initial_admin_password.secret
 
-# ZTw4t_-OSK4ArGnp
+# <관리자 비빌번호>
 ```
 아이디 : ADMIN
-비밀번호 : ZTw4t_-OSK4ArGnp
+비밀번호 : <관리자 비밀번호 >
