@@ -9,4 +9,4 @@ echo 어드민 패스워드 확인 중...
 echo ID : admin
 echo password : $(sudo docker exec -it domserver cat /opt/domjudge/domserver/etc/initial_admin_password.secret)
 
-echo "$(hostname -I | awk '{print $1}'):12345"
+echo "http://$(hostname -I | awk '{print $1}'):12345"
