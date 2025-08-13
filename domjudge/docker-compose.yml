@@ -20,7 +20,7 @@ services:
 
   domserver:
     env_file:
-      - db.env
+      - .env
     container_name: domserver
     image: domjudge/domserver:latest
     volumes:
