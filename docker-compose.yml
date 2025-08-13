@@ -1,7 +1,7 @@
 services:
   mariadb:
     env_file:
-      - .env
+      - db.env
     container_name: dj_mariadb
     image: mariadb:latest
     networks:
@@ -19,6 +19,8 @@ services:
       --max-allowed-packet=100M
 
   domserver:
+    env_file:
+      - db.env
     container_name: domserver
     image: domjudge/domserver:latest
     volumes:
