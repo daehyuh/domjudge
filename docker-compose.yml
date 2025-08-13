@@ -1,7 +1,7 @@
 services:
   mariadb:
     env_file:
-      - db.env
+      - .env
     container_name: dj_mariadb
     image: mariadb:latest
     networks:
