@@ -1,7 +1,7 @@
 services:
   judgehost-0:
     env_file:
-      - domjudge.env
+      - .env
     container_name: judgehost-0
     image: domjudge/judgehost:latest
     privileged: true
