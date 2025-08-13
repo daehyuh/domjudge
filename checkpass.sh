@@ -1,0 +1,1 @@
+docker exec -it domserver cat /opt/domjudge/domserver/etc/restapi.secret
