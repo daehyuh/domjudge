@@ -1,5 +1,7 @@
 services:
   judgehost-0:
+    env_file:
+      - .env
     container_name: judgehost-0
     image: domjudge/judgehost:latest
     privileged: true
@@ -12,7 +14,7 @@ services:
       - CONTAINER_TIMEZONE=Asia/Seoul
       - JUDGEDAEMON_USERNAME=judgehost
       - DAEMON_ID=0
-      - JUDGEDAEMON_PASSWORD==${RESTAPI_PASSWORD}
+      - JUDGEDAEMON_PASSWORD=${RESTAPI_PASSWORD}
 
   judgehost-1:
     container_name: judgehost-1
@@ -32,4 +34,3 @@ services:
 networks:
   domjudge:
     external: true
-
